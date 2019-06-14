@@ -5,7 +5,8 @@ const generateToken = require('../jwt/generateToken')
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-    const credentials = req.headers;
+    const credentials = req.body;
+    
     if (credentials.username && credentials.password) {
         try {
             const user = await db.findByUser(credentials.username)
@@ -17,7 +18,7 @@ router.post('/', async (req, res) => {
             }
         } catch (error) {
             res.status(500).json({
-                error: `There was a problem logging in user`,
+                message: `There was a problem logging in user`,
                 error
             });
         }
@@ -26,7 +27,5 @@ router.post('/', async (req, res) => {
         res.status(400).json({ message: `Please provide valid login credentials`})
     }
 });
-
-
 
 module.exports = router;
