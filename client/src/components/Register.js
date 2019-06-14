@@ -1,30 +1,34 @@
-import axios from 'axios';
-import React, { Component } from 'react';
+import axios from 'axios'
+import React, { Component } from 'react'
 
 export default class Register extends Component {
     state = {
         username: '',
-        password: ''
-    };
+        password: '',
+        department: ''
+    }
 
     handleChange = evt => {
-        const { name, value } = evt.target;
-        this.setState({ [name]: value });
-    };
+        const { name, value } = evt.target
+        this.setState({ [name]: value })
+    }
 
     handleSubmit = async evt => {
-        const { username, password } = this.state;
-        evt.preventDefault();
+        const { username, password } = this.state
+        evt.preventDefault()
         try {
-            const result = await axios.post('http://localhost:8000/api/register', {
-                username: username,
-                password: password
-            });
-            console.log(result);
+            const result = await axios.post(
+                'http://localhost:8000/api/register',
+                {
+                    username: username,
+                    password: password
+                }
+            )
+            console.log(result)
         } catch (error) {
-            console.error(error);
+            console.error(error)
         }
-    };
+    }
 
     render() {
         return (
@@ -41,13 +45,20 @@ export default class Register extends Component {
                     <input
                         type="password"
                         name="password"
-                        placeholder="Username"
+                        placeholder="Password"
                         value={this.state.password}
+                        onChange={this.handleChange}
+                    />
+                    <input
+                        type="text"
+                        name="department"
+                        placeholder="Department"
+                        value={this.state.department}
                         onChange={this.handleChange}
                     />
                     <button type="submit">Submit</button>
                 </form>
             </>
-        );
+        )
     }
 }

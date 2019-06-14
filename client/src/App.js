@@ -3,6 +3,7 @@ import { Route, Switch, NavLink } from 'react-router-dom';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Register from './components/Register';
+import UserList from './components/UserList'
 
 function App() {
     return (
@@ -20,6 +21,10 @@ function App() {
             <li>
               <NavLink to='logout'>Logout</NavLink>
             </li>
+
+            <li>
+              <NavLink to='user-list'>User List</NavLink>
+            </li>
           </ul>
         </div>
         </nav>
@@ -28,6 +33,7 @@ function App() {
                     <Route component={Register} path="/register" />
                     <Route component={Login} path="/login" />
                     <Route component={Logout} path="/logout" />
+                    <Route component={UserList} path="/user-list" />
                 </Switch>
             </main>
         </>
